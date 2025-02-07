@@ -2,30 +2,30 @@
 
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import styles from "@/styles/HeroServicios.module.css";
 
 interface Particle {
   id: number;
   x: number;
   y: number;
   size: number;
-  delay: number; // Tiempo de retraso antes de iniciar el movimiento
-  duration: number; // Duración del movimiento
+  delay: number;
+  duration: number;
 }
 
-const HeroWithShootingStars = () => {
+const HeroServicios = () => {
   const [particles, setParticles] = useState<Particle[]>([]);
 
   useEffect(() => {
-    // Generar partículas iniciales
     const generateParticles = () => {
-      const numParticles = 55; // Cantidad de partículas
+      const numParticles = 55;
       const newParticles: Particle[] = Array.from({ length: numParticles }, (_, i) => ({
         id: i,
-        x: Math.random() * window.innerWidth, // Posición inicial X
-        y: Math.random() * window.innerHeight * 0.5, // Posición inicial Y (en la mitad superior)
-        size: Math.random() * 10, // Tamaño aleatorio
-        delay: Math.random() * 5, // Retraso aleatorio
-        duration: Math.random() * 2 + 1, // Duración aleatoria del movimiento
+        x: Math.random() * window.innerWidth,
+        y: Math.random() * window.innerHeight * 0.5,
+        size: Math.random() * 10,
+        delay: Math.random() * 5,
+        duration: Math.random() * 2 + 1,
       }));
       setParticles(newParticles);
     };
@@ -37,20 +37,15 @@ const HeroWithShootingStars = () => {
   }, []);
 
   return (
-    <section className="relative h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-black via-gray-800 to-black">
+    <section className={styles.hero}>
       {/* Fondo animado */}
-      <motion.div
-        className="absolute inset-0 bg-gradient-to-br from-black via-blue-600 to-black opacity-60"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1 }}
-      ></motion.div>
+      <motion.div className={styles.heroBackground} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }} />
 
       {/* Partículas flotantes (Estrellas Fugaces) */}
       {particles.map((particle) => (
         <motion.div
           key={particle.id}
-          className="absolute bg-white rounded-full"
+          className={styles.particle}
           style={{
             top: particle.y,
             left: particle.x,
@@ -60,7 +55,7 @@ const HeroWithShootingStars = () => {
           animate={{
             x: [particle.x, particle.x + Math.random() * 200],
             y: [particle.y, particle.y + Math.random() * 200],
-            opacity: [3, 0], // Se desvanece
+            opacity: [3, 0],
           }}
           transition={{
             delay: particle.delay,
@@ -73,35 +68,26 @@ const HeroWithShootingStars = () => {
       ))}
 
       {/* Contenido del Hero */}
-      <div className="container mx-auto text-center text-white z-10">
-        <motion.h1
-          className="text-5xl md:text-7xl font-bold mb-6"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          Nuestros <span className="text-[#000000]">Servicios</span>
+      <div className={styles.heroContent}>
+        <motion.h1 className={styles.title} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
+          Nuestros <span className={styles.highlight}>Servicios</span>
         </motion.h1>
 
         <motion.p
-          className="text-xl mb-8 max-w-2xl mx-auto opacity-80"
+          className={styles.description}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          Crea un ambiente mágico con partículas que simulan estrellas fugaces dinámicas y envolventes.
+          Descubre nuestras soluciones integrales en marketing, publicidad y desarrollo de software, diseñadas para impulsar tu marca y conectar con tu audiencia en todo Perú.
         </motion.p>
 
-        <motion.a
-          href="#explore"
-          className="bg-black px-8 py-3 rounded-full text-lg font-semibold hover:bg-gray-700 transition"
-          whileHover={{ scale: 1.1 }}
-        >
-          Explorar
+        <motion.a href="#servicios" className={styles.cta} whileHover={{ scale: 1.1 }}>
+          Ver Servicios
         </motion.a>
       </div>
     </section>
   );
 };
 
-export default HeroWithShootingStars;
+export default HeroServicios;

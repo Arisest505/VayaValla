@@ -29,6 +29,7 @@ const Header: React.FC = () => {
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 backdrop-blur-md ${
         isScrolled ? "bg-black/90 text-white shadow-md" : "bg-transparent text-black"
       }`}
+      style={{ filter: "drop-shadow(0px 0px 1px white)" }} // Estilos en línea correctamente aplicados
     >
       <div className="container mx-auto flex justify-between items-center px-6 py-3 h-16">
         {/* Logo */}
@@ -41,7 +42,7 @@ const Header: React.FC = () => {
               height={50}
               priority
               className="cursor-pointer hover:scale-110 transition-transform"
-              style={{ color:"#ffffff" ,filter: "drop-shadow(0px 0px 5px)" }}
+              style={{ filter: "drop-shadow(0px 0px 5px white)" }}
             />
           </Link>
         </div>
@@ -52,12 +53,12 @@ const Header: React.FC = () => {
             <div key={index}>
               <Link
                 href={item.link}
-                className={`relative group transition-colors duration-300 ${isScrolled ? "hover:text-white text-white" : "hover:text-black text-black"}`}
+                className={`relative group transition-colors duration-300 ${
+                  isScrolled ? "text-white hover:text-gray-300" : "text-black hover:text-gray-700"
+                }`}
               >
                 {item.name}
-                <div
-                  className="absolute bottom-[-3px] left-0 w-full h-1 bg-current scale-x-0 group-hover:scale-x-100 transition-transform duration-300"
-                />
+                <div className="absolute bottom-[-3px] left-0 w-full h-1 bg-current scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
               </Link>
             </div>
           ))}
@@ -67,7 +68,9 @@ const Header: React.FC = () => {
         <div className="md:hidden">
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className={`transition-colors duration-300 ${isScrolled ? "text-white" : "text-black"}`}
+            className={`transition-colors duration-300 ${
+              isScrolled ? "text-white" : "text-black"
+            }`}
           >
             {isMenuOpen ? <X size={30} /> : <Menu size={30} />}
           </button>
@@ -76,9 +79,7 @@ const Header: React.FC = () => {
 
       {/* Menú Móvil */}
       {isMenuOpen && (
-        <div
-          className="absolute top-16 right-0 left-0 bg-white shadow-lg p-6 flex flex-col space-y-4 md:hidden"
-        >
+        <div className="absolute top-16 right-0 left-0 bg-white shadow-lg p-6 flex flex-col space-y-4 md:hidden">
           {menuItems.map((item, index) => (
             <div key={index}>
               <Link
@@ -87,9 +88,7 @@ const Header: React.FC = () => {
                 onClick={() => setIsMenuOpen(false)}
               >
                 {item.name}
-                <div
-                  className="absolute bottom-[-3px] left-0 w-full h-1 bg-purple-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300"
-                />
+                <div className="absolute bottom-[-3px] left-0 w-full h-1 bg-purple-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
               </Link>
             </div>
           ))}
