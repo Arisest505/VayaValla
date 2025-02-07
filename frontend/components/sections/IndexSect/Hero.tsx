@@ -9,7 +9,7 @@ const Hero: React.FC = () => {
   useEffect(() => {
     // Generar partículas aleatorias
     const generateParticles = () => {
-      const numParticles = 20; // Cantidad de partículas
+      const numParticles = 50; // Cantidad de partículas
       const newParticles = Array.from({ length: numParticles }, (_, i) => ({
         id: i,
         x: Math.random() * window.innerWidth,
