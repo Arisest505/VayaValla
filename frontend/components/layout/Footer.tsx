@@ -7,7 +7,7 @@ const menuItems = [
   { title: "Inicio", icon: <Home size={18} />, link: "#inicio" },
   { title: "Servicios", icon: <Layers size={18} />, link: "#servicios" },
   { title: "Nosotros", icon: <Users size={18} />, link: "#nosotros" },
-  { title: "Clientes", icon: <FileText size={18} />, link: "#clientes" },
+ // { title: "Clientes", icon: <FileText size={18} />, link: "#clientes" },
   { title: "Blog", icon: <Globe size={18} />, link: "#blog" },
 ];
 

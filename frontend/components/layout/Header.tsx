@@ -9,7 +9,7 @@ const menuItems = [
   { name: "Inicio", link: "/" },
   { name: "Servicios", link: "/servicios" },
   { name: "Nosotros", link: "/nosotros" },
-  { name: "Clientes", link: "/clientes" },
+ // { name: "Clientes", link: "/clientes" },
   { name: "Blog", link: "/blog" },
 ];
 
