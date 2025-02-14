@@ -3,28 +3,32 @@ import HamburgerToggle from "../ui/HamburgerIcon";
 import DropdownMenu from "../ui/dropDown";
 import MobileMenu from "../ui/MobileMenu";
 
+
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  const [menuWidth, setMenuWidth] = useState("w-0");
-  const [navWidth, setNavWidth] = useState("calc(100% - 80px)");
+  const [menuWidth, setMenuWidth] = useState(""); 
+  const [navWidth, setNavWidth] = useState("");   
+  const [isClient, setIsClient] = useState(false); 
 
   useEffect(() => {
+    setIsClient(true); 
+
     const handleResize = () => {
-      setIsMobile(window.innerWidth <= 960);
-      
-      // Calcular el ancho dinámico del menú en función del navbar
-      const calculatedNavWidth = `calc(100% - ${window.innerWidth <= 960 ? "40px" : "80px"})`;
-      
-      setNavWidth(calculatedNavWidth);
-      setMenuWidth(calculatedNavWidth);
+      const width = window.innerWidth;
+      setIsMobile(width <= 960);
+      setNavWidth(`calc(100% - ${width <= 960 ? "40px" : "80px"})`);
+      setMenuWidth(`calc(100% - ${width <= 960 ? "40px" : "80px"})`);
     };
-  
-    handleResize();
+
+    handleResize(); 
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
-  
+
+  if (!isClient) {
+    return null; 
+  }
 
   return (
     <nav className="fixed top-4 left-0 right-0 mx-auto z-50 bg-[#29292980] border-gray-600 rounded-xl shadow-md px-8 py-5 flex items-center justify-between" style={{ maxWidth: navWidth }}>
